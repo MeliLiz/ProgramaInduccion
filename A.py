@@ -26,22 +26,40 @@ def proceso(x_esq,y_esq,tam,x_esp, y_esp)
                 posicion = esta_cuadrado_especial(x_esq, y_esq, x_esp, y_esp, mitad)
                 match (posicion):
                         case 1: 
-                                #Dibujar la l en el centro y hacer la recursion en todos los cuadros
+                                #Dibujar la L en el centro y hacer la recursion en todos los cuadros
+                                tablero[mitad + 1][mitad] = num #Cuadradito en el cuadrado sup der
+                                tablero[mitad][mitad + 1] = num #Cuadradito en el cuadrado inf izq
+                                tablero[mitad + 1][mitad + 1] = num #Cuadradito en el cuadrado inf der
+                                num += 1
+                                proceso(x_esq, y_esq, mitad, x_esp, y_esp)# proceso en el cuadrado sup izq
+                                proceso(x_esq + mitad, y_esq, mitad, mitad + 1 , mitad) #proceso en el cuadrado sup der
+                                proceso(x_esq, y_esq + mitad, mitad, mitad, mitad+1) #procceso en el cuadrado inferior izquierdo
+                                proceso(x_esq + mitad, y_esq + mitad, mitad, mitad + 1, mitad + 1) #proceso en el cuadrado inferior derecho
                         case 2:
-                        case 2:
+                                #Dibujar la L en el centro y hacer la recursion en todos los cuadros
+                                tablero[mitad][mitad] = num #Cuadradito en el cuadrado sup izq
+                                tablero[mitad+1][mitad] = num #Cuadradito en el cuadrado sup der
+                                tablero[mitad + 1][mitad + 1] = num #Cuadradito en el cuadrado inf der
+                                num += 1
+                               
+                        case 3:
+                                #Dibujar la L en el centro y hacer la recursion en todos los cuadros
+                                tablero[mitad][mitad] = num #Cuadradito en el cuadrado sup izq
+                                tablero[mitad][mitad+1] = num #Cuadradito en el cuadrado inf izq
+                                tablero[mitad + 1][mitad + 1] = num #Cuadradito en el cuadrado inf der
+                                num += 1
                         case 4:
-                        case _:
+                                tablero[mitad + 1][mitad] = num #Cuadradito en el cuadrado sup der
+                                tablero[mitad][mitad + 1] = num #Cuadradito en el cuadrado inf izq
+                                tablero[mitad][mitad] = num #Cuadradito en el cuadrado sup izq
+                                num += 1
                         
+                proceso(x_esq, y_esq, mitad, x_esp, y_esp)# proceso en el cuadrado sup izq
+                proceso(x_esq + mitad, y_esq, mitad, mitad + 1 , mitad) #proceso en el cuadrado sup der
+                proceso(x_esq, y_esq + mitad, mitad, mitad, mitad+1) #proceso en el cuadrado inferior izquierdo
+                proceso(x_esq + mitad, y_esq + mitad, mitad, mitad + 1, mitad + 1) #proceso en el cuadrado inferior derecho
+        
 
-
-
-
-                
-
-                proceso(x,y,mitad)
-                proceso(x+mitad, y, mitad)
-                proceso(x,y+mitad, mitad)
-                proceso(x+mitad, y+mitad, mitad)
 
 #Funcion para saber donde esta el cuadrado especial
 def esta_cuadrado_especial(x_esq, y_esq, x_esp, y_esp, mitad)
@@ -55,18 +73,3 @@ def esta_cuadrado_especial(x_esq, y_esq, x_esp, y_esp, mitad)
                         return 3 #Esta en el cuadrado superior derecho
                 else:
                         return 4 #Esta en el cuadrado inferior derecho
-
-
-"""data = [[random.randint(a=2,b=3) for x in range(0,8)], # hilera 1
-        [random.randint(a=4,b=5) for x in range(0,8)], # hilera 2
-        [random.randint(a=6,b=7) for x in range(0,8)], # hilera 3
-        [random.randint(a=0,b=1) for x in range(0,8)], # hilera 4
-        [random.randint(a=0,b=1) for x in range(0,8)], # hilera 5
-        [random.randint(a=0,b=1) for x in range(0,8)], # hilera 6
-        [random.randint(a=5,b=9) for x in range(0,8)], # hilera 7
-        [random.randint(a=0,b=1) for x in range(0,8)]] # hilera 8
-# mostrar la matriz de datos 2d
-
-pyplot.figure(figsize=(5,5))
-pyplot.imshow(data)
-pyplot.show()"""
