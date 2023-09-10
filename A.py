@@ -1,7 +1,20 @@
 from matplotlib import pyplot
 import random
+import sys
 
-n = 4
+if len(sys.argv)<2 :
+        print("Modo de uso: python3 A.py <Numero n para hacer el tablero de 2^n>")
+        sys.exit(0)
+
+r=sys.argv[1]
+
+try:
+        n=int(r)
+except:
+        print ("El argumento proporcionado debe ser un entero")
+        sys.exit(0)
+
+
 tam_tablero=2**n
 
 tablero = [[0 for x in range(tam_tablero)] for y in range(tam_tablero)]
@@ -25,7 +38,6 @@ def proceso(x_esq,y_esq,tam,x_esp, y_esp,num):
                 pyplot.show()
 
                 llena_ultimo(num, x_esq, y_esq)
-                print(tablero)
 
                 return num + 1
         else:   
@@ -42,13 +54,12 @@ def proceso(x_esq,y_esq,tam,x_esp, y_esp,num):
                         tablero[x_esq + mitad - 1][y_esq + mitad] = num #Cuadradito en el cuadrado inf izq
                         tablero[x_esq+mitad][y_esq +mitad] = num #Cuadradito en el cuadrado inf der
 
-                        print(tablero)
 
                         num+=1
 
                         #Llamadas a proceso con las coordenadas del cuadrito especial en el cuadrado sup izq
                         num_a= proceso(x_esq, y_esq, mitad, x_esp, y_esp, num)# proceso en el cuadrado sup izq
-                        print(a)
+                        #print(a)
                         num_b = proceso(x_esq + mitad, y_esq, mitad, x_esq+mitad , y_esq+mitad - 1,num_a) #proceso en el cuadrado sup der
                         num_c = proceso(x_esq, y_esq + mitad, mitad, x_esq+mitad - 1, y_esq+mitad,num_b) #proceso en el cuadrado inferior izquierdo
                         num_d = proceso(x_esq + mitad, y_esq + mitad, mitad, x_esq+mitad, y_esq+mitad,num_c) #proceso en el cuadrado inferior derecho
@@ -60,8 +71,6 @@ def proceso(x_esq,y_esq,tam,x_esp, y_esp,num):
                         tablero[x_esq + mitad - 1][y_esq+mitad -1] = num #Cuadradito en el cuadrado sup izq
                         tablero[x_esq+mitad][y_esq+mitad - 1] = num #Cuadradito en el cuadrado sup der
                         tablero[x_esq+mitad][y_esq+mitad] = num #Cuadradito en el cuadrado inf der
-
-                        print(tablero)
 
                         num+=1
 
@@ -79,8 +88,6 @@ def proceso(x_esq,y_esq,tam,x_esp, y_esp,num):
                         tablero[x_esq+mitad - 1][y_esq + mitad] = num #Cuadradito en el cuadrado inf izq
                         tablero[x_esq + mitad][y_esq + mitad] = num #Cuadradito en el cuadrado inf der
 
-                        print(tablero)
-
                         num+=1
 
                         #Llamadas a proceso con las coordenadas del cuadrito especial en el cuadrado superior derecho
@@ -94,8 +101,6 @@ def proceso(x_esq,y_esq,tam,x_esp, y_esp,num):
                         tablero[x_esq+mitad][y_esq+mitad - 1] = num #Cuadradito en el cuadrado sup der
                         tablero[x_esq+mitad - 1][y_esq+mitad] = num #Cuadradito en el cuadrado inf izq
                         tablero[x_esq+mitad - 1][y_esq + mitad - 1] = num #Cuadradito en el cuadrado sup izq
-
-                        print(tablero)
 
                         num+=1
 
